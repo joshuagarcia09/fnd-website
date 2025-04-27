@@ -1,4 +1,3 @@
-import os
 from flask import Flask, render_template, request
 import pandas as pd
 import re
@@ -33,10 +32,7 @@ def preprocess_text(text):
     return ' '.join(filtered)
 
 # ---- Load Dataset and Preprocess ----
-# Use relative path to the dataset
-dataset_path = os.path.join(os.path.dirname(__file__), 'bbc-text3.csv')
-dataset = pd.read_csv(dataset_path)
-
+dataset = pd.read_csv("C:/Users/johnj/ScrapyTest/ScrapyTest/FND-2/CATEGORIZER/bbc-text3.csv")
 dataset['text'] = dataset['text'].astype(str).apply(preprocess_text)
 main_categories = {'politics', 'entertainment', 'health'}
 dataset['category'] = dataset['category'].apply(lambda x: x if x in main_categories else 'others')
